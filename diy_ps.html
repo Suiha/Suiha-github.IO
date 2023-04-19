@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Suiha - Self Portrait</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>	
+</head>
+
+<body style="background-color:#495173;color:white;">
+
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-sm bg-transparent navbar-dark">
+	<div class="container-fluid">
+		<!-- Links -->
+		<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" href="index.html">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="glitch.html">Glitch Art</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="mememashup.html">Meme Mashup</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="mc_3dprint.html">Minecraft</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="netart.html">NetArt</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="self_portrait.html">Self Portrait</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="digital_art.html">Digital Art</a>
+		</li>
+		</ul>
+	</div>
+	</nav>
+</div>
+
+<div class="container-fluid p-5 r-5">	
+	<h1 style="padding-top:20px;padding-bottom:25px;text-align:center;background-color:#a68ed4;">Self Portrait</h1>
+	<br><br>
+	
+	<h2 style="text-align:center;">Code as Art</h2>
+	<br>
+	<div class="row">
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center"/>
+			<p>
+				"p5.js is a JavaScript library for creative coding... p5.js has a full set of drawing functionality" (p5js.org).
+				Using p5.js, I created a portrait of myself in a simplistic design. The idea behind this project was that the 
+				portrait could be used as an icon to represent myself online, both as an artist and as an individual.
+			</p>
+			<p>
+				I felt that using a simple and cute design was in line with my own personality, with only a few small details to 
+				make the portrait feel more vibrant.
+			</p>
+		</div>
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+	</div>
+	<br>
+	
+	<div class="row">
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center"/>
+			<iframe src="/self-portrait/index.html" style="width:605px;height:605px;border:none;" title="Self Portrait Using p5.js"></iframe>
+		</div>
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+	</div>
+	<br><br><hr><br><br>
+
+	<div class="row">
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl"/>
+			<h2>p5.js Code</h2>
+			<br>
+			<pre>
+function setup() 
+{
+  createCanvas(600, 600);
+  background(166, 142, 212);
+}
+
+
+function draw() 
+{
+  // Colors
+  let hair_base = color(43, 40, 36);
+  let hair_light = color(59, 55, 49);
+  let hair_dark = color(33, 31, 29);
+  let skin_base = color(224, 187, 155);
+  let skin_dark = color(207, 172, 143);
+  let blush = color(217, 151, 128);
+  let shirt = color(73, 81, 115);
+  
+  noStroke();
+  // base hair
+  fill(hair_base);
+  arc(300, 250, 250, 300, radians(270), radians(90));
+  fill(hair_light);
+  arc(300, 250, 250, 300, radians(90), radians(270));
+  // hair length
+  fill(hair_light);
+  stroke(hair_light);
+  strokeJoin(ROUND);
+  quad(190, 250, 300, 250, 300, 500, 150, 500);
+  fill(hair_base);
+  stroke(hair_base);
+  strokeJoin(ROUND);
+  quad(300, 250, 410, 250, 450, 500, 300, 500);
+  // hair shading
+  noStroke();
+  fill(hair_dark);
+  ellipse(300, 350, 200, 300);
+  
+  // shoulders
+  fill(shirt);
+  stroke(shirt);
+  strokeJoin(ROUND);
+  bezier(225, 400, 330, 380, 355, 395, 375, 400);
+  noStroke();
+  // neck
+  fill(skin_dark);
+  quad(280, 250, 320, 250, 330, 450, 270, 450);
+  // shirt
+  fill(shirt);
+  stroke(shirt);
+  strokeJoin(ROUND);
+  quad(225, 400, 375, 400, 400, 600, 200, 600);
+  noStroke();
+  // how scandalous
+  fill(skin_dark);
+  arc(300, 396, 55, 55, radians(0), radians(180));
+  
+  // head base
+  fill(skin_base);
+  ellipse(300, 250, 200, 250);
+  // blush
+  fill(blush);
+  stroke(blush);
+  strokeWeight(2);
+  line(225, 305, 235, 285);
+  line(240, 305, 250, 285);
+  line(255, 305, 265, 285);
+  line(330, 305, 340, 285);
+  line(345, 305, 355, 285);
+  line(360, 305, 370, 285);
+  
+  // eyebrows
+  stroke(hair_base);
+  strokeCap(ROUND);
+  strokeWeight(5);
+  noFill();
+  bezier(230, 218, 240, 212, 260, 212, 270, 218);
+  bezier(330, 218, 340, 212, 360, 212, 370, 218);
+  noStroke();
+  
+  // eye whites
+  fill(250, 247, 242);
+  ellipse(250, 250, 50, 50);
+  ellipse(350, 250, 50, 50);
+  // irises
+  fill(48, 43, 38);
+  ellipse(250, 255, 40, 40);
+  ellipse(350, 255, 40, 40);
+  // pupil
+  fill(0);
+  ellipse(250, 255, 10, 10);
+  ellipse(350, 255, 10, 10);
+  // eye highlight
+  fill(255, 255, 255);
+  ellipse(240, 245, 10, 10);
+  ellipse(340, 245, 10, 10);
+  
+  // nose
+  fill(skin_dark);
+  triangle(300, 300, 300, 280, 310, 290);
+  
+  // mouth
+  fill(150, 110, 99);
+  bezier(280, 325, 275, 335, 325, 335, 320, 325)
+  
+  // hands
+  fill(skin_base);
+  ellipse(127, 575, 35, 35);
+  ellipse(473, 575, 35, 35);
+  // arms
+  fill(shirt);
+  stroke(shirt);
+  strokeJoin(ROUND);
+  quad(105, 570, 225, 400, 225, 460, 150, 570);
+  quad(375, 400, 495, 570, 450, 570, 375, 460);
+  noStroke();
+  
+  // bangs
+  fill(hair_light);
+  arc(220, 150, 140, 100, radians(325), radians(130));
+  fill(hair_base);
+  arc(370, 150, 200, 100, radians(60), radians(220));
+  stroke(hair_light);
+  fill(hair_light);
+  strokeJoin(ROUND);
+  quad(200, 180, 220, 180, 210, 450, 190, 450);
+  fill(hair_base);
+  stroke(hair_base);
+  quad(380, 180, 405, 180, 410, 450, 390, 450);
+}
+			</pre>
+		</div>
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+	</div>
+	
+</div>
+
+</html>
