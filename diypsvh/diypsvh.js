@@ -128,6 +128,7 @@ function newkeyChoice(toolChoice) {
   } else if (toolChoice == '0') // line tool
   { 
     stroke(tmp);
+    strokeWeight(10);
     line(mouseX, mouseY, pmouseX, pmouseY);
     noStroke();
   } else if (toolChoice == 'e' || toolChoice == 'E') // eraser
