@@ -42,184 +42,285 @@
 </div>
 
 <div class="container-fluid p-5 r-5">	
-	<h1 style="padding-top:20px;padding-bottom:25px;text-align:center;background-color:#a68ed4;">Self Portrait</h1>
+	<h1 style="padding-top:20px;padding-bottom:25px;text-align:center;background-color:#a68ed4;">p5.js Projects</h1>
 	<br><br>
 	
 	<h2 style="text-align:center;">Code as Art</h2>
 	<br>
 	<div class="row">
 		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
-		<div class="col-sm col-md col-lg col-xl col-xxl" align="center"/>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<p>
 				"p5.js is a JavaScript library for creative coding... p5.js has a full set of drawing functionality" (p5js.org).
-				Using p5.js, I created a self-portrait and a drawing canvas with unique brushes. 
+				Using p5.js, I created a self-portrait, a drawing canvas with unique brushes, and a basic game. 
 			</p>
+		</div>
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+	</div>
+	<br><hr><br>
+	
+	<h2 style="text-align:center;">Birb Flap Game</h2>
+	<br>
+	<div class="row">
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<p>
-				The idea behind the self-portrait was that the portrait could be used as an icon to represent myself online, both 
-				as an artist and as an individual. I felt that using a simple and cute design was in line with my own personality, 
-				with only a few small details to make the portrait feel more vibrant.
+				I recreated a version of Flappy Bird, an old mobile game where the player's goal is to navigate a bird through 
+				some obstacles and obtain as high a score as possible. To me, Flappy Bird represents an internet fad, which is 
+				often recreated and mimicked until it's so prolific that people get tired of it and it becomes irrelevant.
 			</p>
+			<h3 style="text-align:center;">How to Play</h3>
+			<p>
+				Press any key to start. Press any key to move the bird upwards, and navigate the bird between the gaps of each 
+				pillar to earn points.
+			</p>
+		</div>
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+	</div>
+	<br><br>
+	
+	<div class="row">
+		<div class="col-sm col-md col-lg col-xl col-xxl">
+			<iframe src="/birbflap/index.html" style="width:605px;height:605px;border:none;" title="Birb Flap Game"></iframe>
+		</div>
+		<div class="col-sm col-md col-lg col-xl col-xxl">
+			<h2>Birb Flap Code</h2>
+			<pre>
+var ballX, ballY;
+var ballSize = 40;
+var score = 0;
+var hiScore = 0;
+var r1 = 300;
+var r2 = 350;   
+var moveX = 0;
+var h1 = 200;
+var gap = 150;
+var pillarDist = 250;
+var gameState = "IDLE";
+
+function preload()
+{
+    birb = loadImage("birb.png");
+    cloud = loadImage("cloud.png");
+    sun = loadImage("sun.png");
+    spikes = loadImage("spikes.png");
+}
+
+function setup() 
+{
+    createCanvas(600, 600);
+    ballX = width/2;
+    ballY = height/2;
+    textAlign(CENTER);
+    textSize(20);
+} // end setup
+
+function draw() 
+{
+    background(153, 224, 255);
+    image(sun, 450, 50);
+    sun.resize(100, 100);
+    image(cloud, 40, 70);
+    image(spikes, 0, 400);
+    fill(255);
+    stroke(0);
+    strokeWeight(2);
+    if (gameState == "IDLE")
+    {
+       text("Press Any Button to Start", width/2, height/2);
+       if (keyIsPressed)
+       {
+          gameState = "L1"; 
+       }
+    } else if (gameState == "LOSE") {
+       text("GAME OVER", width/2, height/2 - 10);
+       text("Press Any Button to Restart", width/2, height/2 + 10);
+       if (keyIsPressed)
+       {
+          gameState ="L1";
+          score = 0;
+          ballX = width/2;
+          ballY = height/2;
+       }
+    } else {
+      image(birb, ballX-20, ballY-20);
+      birb.resize(40, 40);
+      
+      // Draw green pillars
+      fill(0, 168, 45);
+      stroke(0, 168, 45);
+      drawPillars(r1, r2, h1);
+      
+      // Reset colors for text
+      fill(255);
+      stroke(0);
+      strokeWeight(2);
+      if (score > hiScore) { hiScore = score; }
+      if (keyIsPressed)
+       {
+         if (ballY - 10 &lt; 0)
+         {
+           ballY = 2; 
+         } else {
+           ballY -= 10;
+         }
+       } else {
+         ballY += 2;
+       }
+      if (gameState == "L1") 
+      { 
+        levelOne();
+       } else if (gameState == "L2") {
+         levelTwo();
+       } else if (gameState == "L3") {
+         levelThree(); 
+       } else if (gameState == "L4") {
+         levelFour();
+       } else if (gameState == "L5") {
+         levelFive();
+       } else if (gameState == "L6") {
+          levelSix(); 
+       }
+     }
+    
+    textAlign(RIGHT);
+    text("High Score: " + hiScore, width-20, 40);
+    text("Score: " + score, width-20, 60);
+    textAlign(CENTER);
+    if (ballY >= height) { gameState = "LOSE"; }
+} // end draw
+
+function levelOne()
+{
+    h1 = 200;
+    gap = 150;
+    text("Level 1", 50, height - 20); 
+    if (score >= 5) { gameState = "L2"; }
+} // end level 1
+
+function levelTwo()
+{
+    h1 = 150;
+    text("Level 2", 50, height - 20);
+    if (score >= 10) { gameState = "L3"; }
+} // end level 2
+
+function levelThree()
+{
+     h1 = 250;
+     text("Level 3", 50, height - 20);
+     if (score >= 15) { gameState = "L4"; }
+} // end level 3
+
+function levelFour()
+{
+     h1 = 200;
+     gap = 125;
+     text("Level 4", 50, height - 20);
+     if (score >= 20) { gameState = "L5"; }
+} // end level 4
+
+function levelFive()
+{
+     h1 = 150;
+     text("Level 5", 50, height - 20);
+     if (score >= 25) { gameState = "L6"; }
+} // end level 5
+
+function levelSix()
+{
+     h1 = 250;
+     text("Level 6", 50, height - 20);
+} // end level 6
+
+function drawPillars(x1, x2, h1)
+{
+    var pillarPos1 = x1 - moveX;
+    var pillarPos2 = x2 - moveX;  
+    
+    // Pillar 1
+    rect(pillarPos1, 0, 50, h1);
+    quad(pillarPos1, h1 + gap, pillarPos2, h1 + gap, 
+        pillarPos2, height, pillarPos1, height);
+    
+    // Pillar 2
+    rect(pillarPos1 + pillarDist, 0, 50, h1);
+    quad(pillarPos1 + pillarDist, h1 + gap, pillarPos2 + pillarDist, h1 + gap, 
+        pillarPos2 + pillarDist, height, pillarPos1 + pillarDist, height);
+    
+    // Move pillars left, if the 2nd pillar gets to the center of the canvas draw new pillars
+    moveX += 2;
+    if ((pillarPos1 + pillarDist) == width/2)
+    {
+      moveX = 0;
+      drawPillars(x1, x2);
+    }
+    
+    // Rectangle around the ball
+    var bX1 = ballX - (ballSize / 2);
+    var bX2 = ballX + (ballSize / 2);
+    var bY1 = ballY - (ballSize / 2);
+    var bY2 = ballY + (ballSize / 2);
+    
+    // Get coordinates of the gap of the current obstacle
+    var gapLeft, gapRight;
+    if (abs(pillarPos1 - ballX) &lt; abs(pillarPos1 + pillarDist - ballX))
+    {
+       gapLeft = pillarPos1; 
+       gapRight = pillarPos2;
+    } else {
+       gapLeft = pillarPos1 + pillarDist; 
+       gapRight = pillarPos2 + pillarDist;
+    }
+    
+    // Check if the ball hits the pillars
+    if (bX1 >= gapLeft && bX2 &lt;= gapRight)
+    {
+       if (bY1 = h1 || bY2 >= (h1 + gap)) 
+       { 
+         gameState = "LOSE"; 
+       }
+    }
+    
+    // Check if the player scored
+    if (bX1 == gapRight)
+    {
+       score++; 
+    }
+}
+			</pre>
+		</div>
+	</div>
+	<br><hr><br>
+	
+	<h2 style="text-align:center;">DIY Photoshop</h2>
+	<br>
+	<div class="row">
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<p>
 				The inspiration for my DIY photoshop canvas was to enable the user to draw a simple anime-like face, with a simplified
 				head shape, anime-style eyes, and a few classic expressions, along with a color picker, line tool, and erase tool.
 				The user can also save the image they create.
 			</p>
+			<h3 style="text-align:center;">Controls</h3>
+			<p>
+				Keys 1: Head Tool &nbsp;&nbsp;
+				Keys 2-4: Anime Eye Tool &nbsp;&nbsp;
+				Keys 5-6: Nose Tool &nbsp;&nbsp;
+				Keys 7-9: Mouth Tool &nbsp;&nbsp;
+				Key 0: Line Tool &nbsp;&nbsp;
+				Key e: Erase Tool &nbsp;&nbsp;
+				Key x: Clear Canvas &nbsp;&nbsp;
+				Key p: Save Image &nbsp;&nbsp;
+			</p>
 		</div>
 		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
 	</div>
-	<br>
+	<br><br>
 	
 	<div class="row">
-		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
-		<div class="col-sm col-md col-lg col-xl col-xxl" align="center"/>
-			<iframe src="/self-portrait/index.html" style="width:605px;height:605px;border:none;" title="Self Portrait Using p5.js"></iframe>
-		</div>
-		<div class="col-sm col-md col-lg col-xl col-xxl" align="center"/>
-			<iframe src="/diypsvh/index.html" style="width:650px;height:605px;border:none;" title="DIY Photoshop p5.js"></iframe>
-		</div>
-		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
-	</div>
-	<br><br><hr><br><br>
-
-	<div class="row">
-		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
-		<div class="col-sm col-md col-lg col-xl col-xxl"/>
-			<h2>Self-Portrait Code</h2>
-			<br>
-			<pre>
-function setup() 
-{
-  createCanvas(600, 600);
-  background(166, 142, 212);
-}
-
-
-function draw() 
-{
-  // Colors
-  let hair_base = color(43, 40, 36);
-  let hair_light = color(59, 55, 49);
-  let hair_dark = color(33, 31, 29);
-  let skin_base = color(224, 187, 155);
-  let skin_dark = color(207, 172, 143);
-  let blush = color(217, 151, 128);
-  let shirt = color(73, 81, 115);
-  
-  noStroke();
-  // base hair
-  fill(hair_base);
-  arc(300, 250, 250, 300, radians(270), radians(90));
-  fill(hair_light);
-  arc(300, 250, 250, 300, radians(90), radians(270));
-  // hair length
-  fill(hair_light);
-  stroke(hair_light);
-  strokeJoin(ROUND);
-  quad(190, 250, 300, 250, 300, 500, 150, 500);
-  fill(hair_base);
-  stroke(hair_base);
-  strokeJoin(ROUND);
-  quad(300, 250, 410, 250, 450, 500, 300, 500);
-  // hair shading
-  noStroke();
-  fill(hair_dark);
-  ellipse(300, 350, 200, 300);
-  
-  // shoulders
-  fill(shirt);
-  stroke(shirt);
-  strokeJoin(ROUND);
-  bezier(225, 400, 330, 380, 355, 395, 375, 400);
-  noStroke();
-  // neck
-  fill(skin_dark);
-  quad(280, 250, 320, 250, 330, 450, 270, 450);
-  // shirt
-  fill(shirt);
-  stroke(shirt);
-  strokeJoin(ROUND);
-  quad(225, 400, 375, 400, 400, 600, 200, 600);
-  noStroke();
-  // how scandalous
-  fill(skin_dark);
-  arc(300, 396, 55, 55, radians(0), radians(180));
-  
-  // head base
-  fill(skin_base);
-  ellipse(300, 250, 200, 250);
-  // blush
-  fill(blush);
-  stroke(blush);
-  strokeWeight(2);
-  line(225, 305, 235, 285);
-  line(240, 305, 250, 285);
-  line(255, 305, 265, 285);
-  line(330, 305, 340, 285);
-  line(345, 305, 355, 285);
-  line(360, 305, 370, 285);
-  
-  // eyebrows
-  stroke(hair_base);
-  strokeCap(ROUND);
-  strokeWeight(5);
-  noFill();
-  bezier(230, 218, 240, 212, 260, 212, 270, 218);
-  bezier(330, 218, 340, 212, 360, 212, 370, 218);
-  noStroke();
-  
-  // eye whites
-  fill(250, 247, 242);
-  ellipse(250, 250, 50, 50);
-  ellipse(350, 250, 50, 50);
-  // irises
-  fill(48, 43, 38);
-  ellipse(250, 255, 40, 40);
-  ellipse(350, 255, 40, 40);
-  // pupil
-  fill(0);
-  ellipse(250, 255, 10, 10);
-  ellipse(350, 255, 10, 10);
-  // eye highlight
-  fill(255, 255, 255);
-  ellipse(240, 245, 10, 10);
-  ellipse(340, 245, 10, 10);
-  
-  // nose
-  fill(skin_dark);
-  triangle(300, 300, 300, 280, 310, 290);
-  
-  // mouth
-  fill(150, 110, 99);
-  bezier(280, 325, 275, 335, 325, 335, 320, 325)
-  
-  // hands
-  fill(skin_base);
-  ellipse(127, 575, 35, 35);
-  ellipse(473, 575, 35, 35);
-  // arms
-  fill(shirt);
-  stroke(shirt);
-  strokeJoin(ROUND);
-  quad(105, 570, 225, 400, 225, 460, 150, 570);
-  quad(375, 400, 495, 570, 450, 570, 375, 460);
-  noStroke();
-  
-  // bangs
-  fill(hair_light);
-  arc(220, 150, 140, 100, radians(325), radians(130));
-  fill(hair_base);
-  arc(370, 150, 200, 100, radians(60), radians(220));
-  stroke(hair_light);
-  fill(hair_light);
-  strokeJoin(ROUND);
-  quad(200, 180, 220, 180, 210, 450, 190, 450);
-  fill(hair_base);
-  stroke(hair_base);
-  quad(380, 180, 405, 180, 410, 450, 390, 450);
-}
-			</pre>
-		</div>
-		<div class="col-sm col-md col-lg col-xl col-xxl"/>
+		<div class="col-sm col-md col-lg col-xl col-xxl">
 			<h2>DIY Photoshop Code</h2>
 			<br>
 			<pre>
@@ -391,9 +492,169 @@ function saveme()
 }
 			</pre>
 		</div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<iframe src="/diypsvh/index.html" style="width:650px;height:605px;border:none;" title="DIY Photoshop p5.js"></iframe>
+		</div>
+	</div>
+	
+	<h2 style="text-align:center;">Self Portrait</h2>
+	<br>
+	<div class="row">
 		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<p>
+				The idea behind the self-portrait was that the portrait could be used as an icon to represent myself online, both 
+				as an artist and as an individual. I felt that using a simple and cute design was in line with my own personality, 
+				with only a few small details to make the portrait feel more vibrant.
+			</p>
+		</div>
+		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
+	</div>
+	<br><br>
+	
+	<div class="row">
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<iframe src="/self-portrait/index.html" style="width:605px;height:605px;border:none;" title="Self Portrait Using p5.js"></iframe>
+		</div>
+		<div class="col-sm col-md col-lg col-xl col-xxl">
+			<h2>Self-Portrait Code</h2>
+			<br>
+			<pre>
+function setup() 
+{
+  createCanvas(600, 600);
+  background(166, 142, 212);
+}
+
+
+function draw() 
+{
+  // Colors
+  let hair_base = color(43, 40, 36);
+  let hair_light = color(59, 55, 49);
+  let hair_dark = color(33, 31, 29);
+  let skin_base = color(224, 187, 155);
+  let skin_dark = color(207, 172, 143);
+  let blush = color(217, 151, 128);
+  let shirt = color(73, 81, 115);
+  
+  noStroke();
+  // base hair
+  fill(hair_base);
+  arc(300, 250, 250, 300, radians(270), radians(90));
+  fill(hair_light);
+  arc(300, 250, 250, 300, radians(90), radians(270));
+  // hair length
+  fill(hair_light);
+  stroke(hair_light);
+  strokeJoin(ROUND);
+  quad(190, 250, 300, 250, 300, 500, 150, 500);
+  fill(hair_base);
+  stroke(hair_base);
+  strokeJoin(ROUND);
+  quad(300, 250, 410, 250, 450, 500, 300, 500);
+  // hair shading
+  noStroke();
+  fill(hair_dark);
+  ellipse(300, 350, 200, 300);
+  
+  // shoulders
+  fill(shirt);
+  stroke(shirt);
+  strokeJoin(ROUND);
+  bezier(225, 400, 330, 380, 355, 395, 375, 400);
+  noStroke();
+  // neck
+  fill(skin_dark);
+  quad(280, 250, 320, 250, 330, 450, 270, 450);
+  // shirt
+  fill(shirt);
+  stroke(shirt);
+  strokeJoin(ROUND);
+  quad(225, 400, 375, 400, 400, 600, 200, 600);
+  noStroke();
+  // how scandalous
+  fill(skin_dark);
+  arc(300, 396, 55, 55, radians(0), radians(180));
+  
+  // head base
+  fill(skin_base);
+  ellipse(300, 250, 200, 250);
+  // blush
+  fill(blush);
+  stroke(blush);
+  strokeWeight(2);
+  line(225, 305, 235, 285);
+  line(240, 305, 250, 285);
+  line(255, 305, 265, 285);
+  line(330, 305, 340, 285);
+  line(345, 305, 355, 285);
+  line(360, 305, 370, 285);
+  
+  // eyebrows
+  stroke(hair_base);
+  strokeCap(ROUND);
+  strokeWeight(5);
+  noFill();
+  bezier(230, 218, 240, 212, 260, 212, 270, 218);
+  bezier(330, 218, 340, 212, 360, 212, 370, 218);
+  noStroke();
+  
+  // eye whites
+  fill(250, 247, 242);
+  ellipse(250, 250, 50, 50);
+  ellipse(350, 250, 50, 50);
+  // irises
+  fill(48, 43, 38);
+  ellipse(250, 255, 40, 40);
+  ellipse(350, 255, 40, 40);
+  // pupil
+  fill(0);
+  ellipse(250, 255, 10, 10);
+  ellipse(350, 255, 10, 10);
+  // eye highlight
+  fill(255, 255, 255);
+  ellipse(240, 245, 10, 10);
+  ellipse(340, 245, 10, 10);
+  
+  // nose
+  fill(skin_dark);
+  triangle(300, 300, 300, 280, 310, 290);
+  
+  // mouth
+  fill(150, 110, 99);
+  bezier(280, 325, 275, 335, 325, 335, 320, 325)
+  
+  // hands
+  fill(skin_base);
+  ellipse(127, 575, 35, 35);
+  ellipse(473, 575, 35, 35);
+  // arms
+  fill(shirt);
+  stroke(shirt);
+  strokeJoin(ROUND);
+  quad(105, 570, 225, 400, 225, 460, 150, 570);
+  quad(375, 400, 495, 570, 450, 570, 375, 460);
+  noStroke();
+  
+  // bangs
+  fill(hair_light);
+  arc(220, 150, 140, 100, radians(325), radians(130));
+  fill(hair_base);
+  arc(370, 150, 200, 100, radians(60), radians(220));
+  stroke(hair_light);
+  fill(hair_light);
+  strokeJoin(ROUND);
+  quad(200, 180, 220, 180, 210, 450, 190, 450);
+  fill(hair_base);
+  stroke(hair_base);
+  quad(380, 180, 405, 180, 410, 450, 390, 450);
+}
+			</pre>
+		</div>
 	</div>
 	
 </div>
 
+</body>
 </html>
