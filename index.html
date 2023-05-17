@@ -5,7 +5,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+	<style>
+		.navbar-nav > li > .dropdown-menu 
+		{ 
+			background-color: #323D3F; 
+		}
+		
+		nav li:hover > ul 
+		{
+			display: block;
+		}
+	</style>
 </head>
 
 <body style="background-color:#323D3F;color:white;">
@@ -33,8 +45,14 @@
 		<li class="nav-item">
 			<a class="nav-link" href="p5_js.html">p5.js</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="cos_zine.html">CoS Zine</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="cos_zine.html">CoS Zine</a>
+			<ul class="dropdown-menu">
+				<li><a class="nav-link" href="cos_zine.html">About CoS Zine</a></li>
+				<li><a class="nav-link" href="cos_techtools.html">Technology & Tools</a></li>
+				<li><a class="nav-link" href="cos_chars.html">Character Pieces</a></li>
+				<li><a class="nav-link" href="cos_thematic.html">Thematic Pieces</a></li>
+			</ul>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="digital_art.html">Digital Art</a>
@@ -106,25 +124,31 @@
 	</div>
 	<br><br>
 	<div class="row">
-		<div class="col-sm-0 col-md-2 col-lg-2 col-xl-2 col-xxl-2"></div>
+		<div class="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
 		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<a href="netart.html"><img class="img-fluid" src="netart_thumbnail.jpg" width="500px" height="500px" alt="NetArt Thumbnail"></a>
 		</div>
 		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<a href="self_portrait.html"><img class="img-fluid" src="p5js_portrait.png" width="500px" height="500px" alt="p5js Thumbnail"></a>
 		</div>
-		<div class="col-sm-0 col-md-2 col-lg-2 col-xl-2 col-xxl-2"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<a href="cos_zine.html"><img class="img-fluid" src="zine_thumbnail.png" width="500px" height="500px" alt="CoS Zine Thumbnail"></a>
+		</div>
+		<div class="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-sm-0 col-md-2 col-lg-2 col-xl-2 col-xxl-2"></div>
+		<div class="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
 		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<h3><a href="netart.html" style="text-decoration:none;color:inherit">NetArt</a></h3>
 		</div>
 		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<h3><a href="self_portrait.html" style="text-decoration:none;color:inherit">p5.js Projects</h3></a>
 		</div>
-		<div class="col-sm-0 col-md-2 col-lg-2 col-xl-2 col-xxl-2"></div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<h3><a href="cos_zine.html" style="text-decoration:none;color:inherit">Curse of Strahd Zine</a></h3>
+		</div>
+		<div class="col-sm-0 col-md-1 col-lg-1 col-xl-1 col-xxl-1"></div>
 	</div>
 
 	<br><br><hr><br><br>

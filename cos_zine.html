@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<title>Suiha - Digital Art</title>
+	<title>Suiha - CoS Zine</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+	<style>
+		.navbar-nav > li > .dropdown-menu 
+		{ 
+			background-color: #707070; 
+		}
+		
+		nav li:hover > ul 
+		{
+			display: block;
+		}
+	</style>
 </head>
 
 <body style="background-color:#707070;color:white;">
@@ -33,8 +45,14 @@
 		<li class="nav-item">
 			<a class="nav-link" href="p5_js.html">p5.js</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="cos_zine.html">CoS Zine</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="cos_zine.html">CoS Zine</a>
+			<ul class="dropdown-menu">
+				<li><a class="nav-link" href="cos_zine.html">About CoS Zine</a></li>
+				<li><a class="nav-link" href="cos_techtools.html">Technology & Tools</a></li>
+				<li><a class="nav-link" href="cos_chars.html">Character Pieces</a></li>
+				<li><a class="nav-link" href="cos_thematic.html">Thematic Pieces</a></li>
+			</ul>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="digital_art.html">Digital Art</a>
@@ -48,25 +66,63 @@
 	<h1 style="padding-top:20px;padding-bottom:25px;text-align:center;background-color:#803333">Curse of Strahd Zine</h1>
 	<br><br>
 	
-	<h2 style="text-align:center;">Curse of Strahd</h2>
-	<br>
 	<div class="row">
 		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
 		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
 			<p>
-				Curse of Strahd is a <i>Dungeons & Dragons</i> (5th edition) gothic horror adventure where players are 
+				<b>Curse of Strahd</b> (CoS) is a <i>Dungeons & Dragons</i> (5th edition) gothic horror adventure where players are 
 				trapped in Barovia, a mysterious land surrounded by mist. Throughout the adventure, players will learn more 
 				about and confront the titular villain, Strahd von Zarovich, who is both a wizard and a vampire.
 			</p>
 			<p>
+				A <b>zine</b> is “a noncommercial often homemade or online publication usually devoted to specialized and often 
+				unconventional subject matter” (<i>Merriam Webster</i>), similar to a magazine.
+			</p>
+			<p>
 				I created a series of images related to an upcoming Curse of Strahd campaign I will be running and put them 
-				together into a zine, or small magazine. The zine itself contains 8 images, 5 for the 5 player characters, 2 
-				for a major landmark, and 1 for an important non-player character (NPC.
+				together into a zine\. The zine itself contains 8 images, 5 for the 5 player characters, 2 
+				for a important non-player-characters (NPCs), and 1 for an significant landmark (NPC).
 			</p>
 		</div>
 		<div class="col-sm-0 col-md-0 col-lg-1 col-xl-1 col-xxl-1"></div>
 	</div>
 	<br><hr><br>
+	
+	<center><img class="img-fluid" src="cos_zine.png" width="75%" height="75%" alt="CoS Zine"></center>
+	<br><br>
+	
+	<div class="row">
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<h2><a href="cos_techtools.html" style="color:inherit">Creating the Zine</a></h2>
+			<br>
+			<p>
+				To draw these digital paintings, I used Clip Studio Paint (CSP), a digital drawing program similar to 
+				Photoshop. CSP also offered features such as access to free custom tools, patterns, and 3D models made by 
+				the CSP community to augment my process.
+			</p>
+			<p>
+				I then combined all the images into one using 
+				<a href="http://unicornycopia.com/ezm/" style="color:inherit" target="_blank">Electric Zine Maker</a>, which 
+				formats images using different templates for zines.
+			</p>
+		</div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<h2><a href="cos_chars.html" style="color:inherit">Character Illustrations</a></h2>
+			<br>
+			<p>
+				I dedicated 5 of the 8 total digital paintings to each of my 5 player characters. These all represent aspects about 
+				their character that stood out to me the most.
+			</p>
+		</div>
+		<div class="col-sm col-md col-lg col-xl col-xxl" align="center">
+			<h2><a href="cos_thematic.html" style="color:inherit">Thematic Illustrations</a></h2>
+			<br>
+			<p>
+				I dedicated 3 of the 8 total digital paintings to content from the original Curse of Strahd adventure. These illustrations 
+				reflect what I perceive to be the most iconic parts of the game.
+			</p>
+		</div>
+	</div>
 </div>
 
 </body>
